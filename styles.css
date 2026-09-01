@@ -63,6 +63,7 @@ img {
 }
 
 .brand {
+  display: inline-block;
   font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -80,6 +81,13 @@ img {
 .main-nav a:hover,
 .main-nav a:focus-visible {
   color: var(--primary-strong);
+}
+
+.main-nav a:focus-visible,
+.button:focus-visible,
+.brand:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .hero {
@@ -293,6 +301,7 @@ img {
 
 .site-footer {
   padding: 1rem 0 2rem;
+  background: var(--bg);
 }
 
 .footer-inner {
