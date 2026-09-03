@@ -197,6 +197,51 @@ img {
   margin-top: 2rem;
 }
 
+.cv-group {
+  margin-top: 2rem;
+}
+
+.cv-group > h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-strong);
+}
+
+.cv-entry {
+  margin-bottom: 1.2rem;
+  padding: 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+}
+
+.cv-entry-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.cv-entry h4 {
+  margin: 0 0 0.25rem;
+  color: var(--primary-strong);
+  font-size: 1.1rem;
+}
+
+.cv-meta,
+.cv-skills {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.cv-entry p,
+.project-card p {
+  margin-bottom: 0.8rem;
+}
+
+.cv-skills {
+  font-weight: 600;
+}
+
 .item {
   display: grid;
   grid-template-columns: 140px 1fr;
@@ -318,5 +363,9 @@ img {
 
   .item {
     grid-template-columns: 1fr;
+  }
+
+  .cv-entry-heading {
+    display: block;
   }
 }
