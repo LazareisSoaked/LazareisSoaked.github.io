@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Thought | Lazareis Soaked</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand">Lazareis Soaked</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html#about">About</a>
+          <a href="index.html#cv">CV</a>
+          <a href="index.html#publications">Publications</a>
+          <a href="index.html#projects">Projects</a>
+          <a href="index.html#interests">Interests</a>
+          <a href="thoughts.html">Thoughts</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="content-section">
+        <div class="container narrow">
+          <p><a href="thoughts.html">&larr; Back to Thoughts</a></p>
+          <article id="thought-content" class="thought-content">
+            <p class="note">Loading…</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2024 Lazareis Soaked</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      async function loadThought() {
+        const params = new URLSearchParams(window.location.search);
+        const post = params.get("post");
+        const contentEl = document.getElementById("thought-content");
+
+        if (!post) {
+          contentEl.innerHTML = '<p class="note">No thought specified.</p>';
+          return;
+        }
+
+        try {
+          const manifestRes = await fetch("thoughts/manifest.json");
+          const files = manifestRes.ok ? await manifestRes.json() : [];
+          if (!files.includes(post)) {
+            contentEl.innerHTML = '<p class="note">Thought not found.</p>';
+            return;
+          }
+
+          const res = await fetch(`thoughts/${post}`);
+          if (!res.ok) throw new Error("Failed to load thought");
+          const markdown = await res.text();
+
+          const titleMatch = markdown.match(/^#\s+(.+)$/m);
+          if (titleMatch) {
+            document.getElementById("page-title").textContent =
+              `${titleMatch[1]} | Lazareis Soaked`;
+          }
+
+          contentEl.innerHTML =
+            typeof marked !== "undefined"
+              ? marked.parse(markdown)
+              : `<pre>${markdown}</pre>`;
+        } catch (err) {
+          contentEl.innerHTML =
+            '<p class="note">Unable to load this thought right now.</p>';
+        }
+      }
+
+      loadThought();
+    </script>
+  </body>
+</html>

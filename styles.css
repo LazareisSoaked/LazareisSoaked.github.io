@@ -336,6 +336,58 @@ img {
   font-weight: 600;
 }
 
+.thoughts-list {
+  margin: 2rem 0 0;
+  padding-left: 1.4rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.thoughts-list li {
+  padding-left: 0.3rem;
+}
+
+.thoughts-list a {
+  font-weight: 600;
+  color: var(--primary-strong);
+  border-bottom: 1px solid transparent;
+}
+
+.thoughts-list a:hover,
+.thoughts-list a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.thought-content {
+  margin-top: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.thought-content h1 {
+  margin-top: 0;
+  color: var(--primary-strong);
+}
+
+.thought-content h2,
+.thought-content h3 {
+  color: var(--primary-strong);
+}
+
+.thought-content p,
+.thought-content li {
+  color: var(--text);
+}
+
+.thought-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .site-footer {
   padding: 1rem 0 2rem;
 }
